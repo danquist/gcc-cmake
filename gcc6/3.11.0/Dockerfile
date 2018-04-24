@@ -1,15 +1,10 @@
-FROM gcc:6
+ARG GCC_VERSION=6
+FROM gcc:$GCC_VERSION
 
-ARG version=3.11
-ARG build=0
+ARG CMAKE_VERSION=3.11
+ARG CMAKE_BUILD=0
 
-LABEL gcc-version=6
-LABEL cmake-version=$version.$build
-
-RUN installer=cmake-$version.$build-Linux-x86_64.sh; \
-  cd ~; \
-  wget "https://cmake.org/files/v$version/$installer" -P .; \
-  mkdir /opt/cmake; \
-  sh $installer --prefix=/opt/cmake --skip-license; \
-  ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake; \
-  rm -f $installer
+RUN wget -q https://raw.githubusercontent.com/danquist/install-cmake/master/install-cmake.sh /; \
+    chmod +x /install-cmake.sh; \ 
+    /install-cmake.sh $CMAKE_VERSION $CMAKE_BUILD; \
+    rm -f /install-cmake.sh
