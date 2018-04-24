@@ -1,7 +1,7 @@
 FROM gcc:6
 
-ARG CMAKE_VERSION=3.11
-ARG CMAKE_BUILD=0
+ARG CMAKE_VERSION=3.1
+ARG CMAKE_BUILD=3
 
 RUN wget -q https://raw.githubusercontent.com/danquist/install-cmake/master/install-cmake.sh /; \
     chmod +x /install-cmake.sh; \
